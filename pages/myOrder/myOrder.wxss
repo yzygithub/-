@@ -1,0 +1,93 @@
+/* 我的订单 */
+
+page {
+  background: #f0f1f5;
+}
+
+.order-scroll {
+  height: 100%;
+}
+
+.order-item {
+  border-top: 1px solid #e8e8e8;
+  background: #fff;
+  margin-bottom: 40rpx;
+}
+
+.order-item .order-head {
+  border-bottom: 1px solid #e8e8e8;
+  color: #666;
+  font-size: 24rpx;
+  height: 72rpx;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-item .order-head text {
+  line-height: 72rpx;
+}
+
+.order-item .goods-list {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.goods-list .goods-item {
+  padding: 20rpx 30rpx;
+  width: 100%;
+  height: 180rpx;
+  position: relative;
+}
+
+.goods-list .goods-item .pic {
+  width: 140rpx;
+  height: 140rpx;
+  float: left;
+  margin-right: 28rpx;
+}
+
+.goods-item .name, .goods-item .price {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.goods-item .price {
+  margin-top: 60rpx;
+}
+
+.goods-item .count {
+  font-size: 24rpx;
+  color: #333;
+  position: absolute;
+  top: 80rpx;
+  right: 30rpx;
+}
+
+.order-foot {
+  padding: 0 30rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+}
+
+.order-foot .total {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.total-price {
+  font-weight: bold;
+}
+
+.order-foot .order-detail {
+  float: right;
+  margin-top: 25rpx;
+  display: inline-block;
+  width: 128rpx;
+  height: 48rpx;
+  border-radius: 24rpx;
+  border: 1px solid #666;
+  font-size: 24rpx;
+  color: #333;
+  line-height: 48rpx;
+  text-align: center;
+}

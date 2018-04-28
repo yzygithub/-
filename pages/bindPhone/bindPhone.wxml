@@ -1,0 +1,15 @@
+<!--pages/bindPhone/bindPhone.wxml-->
+<view class='container'>
+  <view class='input-wrap'>
+    <view class='input-item'>
+      <label for='phone'>手机号码</label>
+      <input id='phone' class='input-ctl input-mobile' maxlength="11" placeholder="请输入您的手机号码" confirm-type="next" placeholder-style="font-size:28rpx;color:#ccc;" type='number' bindinput="mobileInput" bindblur="mobileBlur"/>
+      <button class='get-code' bindtap="getSmsCode">获取验证码</button>
+    </view>
+    <view class='input-item'>
+    <label for='code'>验证码</label>
+    <input id='code' class='input-ctl input-code' maxlength="6" placeholder="请输入手机验证码" confirm-type="done"  placeholder-style="font-size:28rpx;color:#ccc;" type='number' bindinput="codeInput" bindblur="codeBlur"/>
+    </view>
+  </view>
+  <button type="success" class='submit' bindtap="submit">提交</button>
+</view>

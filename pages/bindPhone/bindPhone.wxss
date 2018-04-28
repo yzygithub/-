@@ -1,0 +1,60 @@
+/* pages/bindPhone/bindPhone.wxss */
+page {
+  background: #f0f1f5;
+}
+.input-wrap {
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+  padding-left: 30rpx;
+  margin-bottom: 30rpx;
+}
+.input-item {
+  height: 100rpx;
+  border-bottom: 1px solid #e8e8e8;
+  line-height: 100rpx;
+  position: relative;
+}
+.input-item:last-child {
+  border: none;
+}
+
+label {
+  font-size: 30rpx;
+  color: #333;
+  display: inline-block;
+  width: 150rpx;
+}
+.input-ctl {
+  display: inline-block;
+}
+.input-mobile {
+  width: 300rpx;
+}
+.input-code {
+  width: 500rpx;
+}
+.get-code {
+  width: 200rpx;
+  height: 60rpx;
+  display: inline-block;
+  line-height: 60rpx;
+  background: #8146E5;
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 30rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+
+.submit {
+  margin: 0 30rpx;
+  background: #8146E5;
+  color: #fff;
+}
+.button-hover {
+  background: #fff;
+  color: #8146E5;
+  border: #8146E5;
+}

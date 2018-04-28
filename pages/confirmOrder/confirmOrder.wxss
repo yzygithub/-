@@ -1,0 +1,104 @@
+/* pages/confirmOrder/confirmOrder.wxss */
+
+/* 我的订单 */
+
+page {
+  background: #f0f1f5;
+}
+
+.order-item {
+  border-top: 1px solid #e8e8e8;
+  margin-bottom: 40rpx;
+}
+
+.order-item .order-head {
+  border-bottom: 1px solid #e8e8e8;
+  color: #333;
+  font-size: 24rpx;
+  height: 72rpx;
+  padding: 0 30rpx;
+  background: #fff;
+}
+
+.order-item .order-head text {
+  line-height: 72rpx;
+}
+.goods-wrapper {
+  height: 1036rpx;
+}
+.order-item .goods-list {
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+}
+
+.goods-list .goods-item {
+  padding: 20rpx 30rpx;
+  width: 100%;
+  height: 180rpx;
+  position: relative;
+}
+
+.goods-list .goods-item .pic {
+  width: 140rpx;
+  height: 140rpx;
+  float: left;
+  margin-right: 28rpx;
+}
+
+.goods-item .name, .goods-item .price {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.goods-item .price {
+  margin-top: 60rpx;
+  color: #ff5656;
+}
+
+.goods-item .count {
+  font-size: 24rpx;
+  color: #333;
+  position: absolute;
+  top: 80rpx;
+  right: 30rpx;
+}
+
+.order-foot {
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  height: 98rpx;
+  width: 100%;
+  padding: 0 30rpx;
+  line-height: 98rpx;
+  border-top: 1px solid #e8e8e8;
+}
+
+.order-foot .total {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
+}
+.order-foot .total-price {
+  font-size: 42rpx; 
+  font-weight: normal;
+  position:fixed;
+  bottom:0;
+  left:120rpx;
+}
+.order-foot .pay {
+  display: inline-block;
+  width: 164rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+  background: linear-gradient(to right, #ab7df8, #8146e5);
+  /* border: 1px solid #666; */
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 72rpx;
+  text-align: center;
+  position:fixed;
+  bottom:12rpx;
+  right:30rpx;
+
+}

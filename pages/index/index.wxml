@@ -1,0 +1,124 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='topInfo'>
+    <label class='iconfont icon-location'></label>
+    <text class='shelf-name'>{{shelfLocation}}</text>
+    <image class='avatar' src='{{userInfo.avatarUrl}}' background-size='cover' bindtap='openCenter'></image>
+  </view>
+  <view class='content-wrapper'>
+    <!-- 商品分类 -->
+    <scroll-view class="classify-wrapper" scroll-y="true">
+      <view class="classify {{classifySeleted == ('c-'+classify.id)?'active':''}}" wx:for="{{goodsList}}"
+            wx:for-item="classify" wx:key="id" data-id="c-{{classify.id}}" bindtap="tapClassify">
+        <view class="name">{{classify.classifyName}}</view>
+      </view>
+    </scroll-view>
+    <!-- 商品列表 -->
+    <scroll-view class="goods-wrapper" scroll-y="true" scroll-into-view="{{classifyViewed}}" bindscroll="onGoodsScroll">
+      <view wx:for="{{goodsList}}" wx:for-item="classify" wx:key="id" id="c-{{classify.id}}">
+        <view class="title">{{classify.classifyName}}</view>
+        <view class="goods" wx:for="{{classify.goods}}" wx:for-item="id" wx:key="*this">
+          <image class="pic" src="{{goods[id].pic}}"></image>
+          <view class="name ellipsis">{{goods[id].goods_name}}</view>
+          <view class="price">
+            <text class='big'>{{goods[id].integral}}</text>
+            积分+￥
+            <text class='big'>{{goods[id].shop_price}}</text>
+          </view>
+          <view class='rna'>
+            <!-- <view class="minusCart" bindtap="tapReduceCart" data-id="{{id}}">
+              <label class='iconfont icon-minus'></label>
+            </view>
+            <view class="num">{{num}}</view> -->
+            <view class="addCart" bindtap="tapAddCart" data-id="{{id}}">
+              <label class='iconfont icon-plus'></label>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='rear'>-睿途便利-</view>
+    </scroll-view>
+  </view>
+  <!-- 购物车 -->
+  <view class="cart" wx:if="{{cart.count}}">
+    <view class='blur'></view>
+    <view class="data" bindtap="showModal">
+      <view class="icon">
+        <icon class='iconfont icon-cart'></icon>
+        <view class="count">{{cart.count}}</view>
+      </view>
+      <view class="total">￥{{cart.totalPrice}}+{{cart.totalIntegral}}积分</view>
+    </view>
+    <!--<form bindsubmit="submit" report-submit="true">-->
+      <!--<view formType="submit" class="submit">去结算</view>-->
+    <button class="ok" bindtap="submitCart">选好了</button>
+    <!--</form>-->
+  </view>
+  <!-- 购物车列表 -->
+  <view class="mask" bindtap="hideMask" hidden='{{!showCartDetail}}' catchtouchmove="preventScroll"></view>
+  <view class="cart-detail" animation="{{animationData}}" hidden='{{!showCartDetail}}'>
+    <view class='cart-detail-head'>
+      <view class='goods-count'>已选商品({{cart.count}})</view>
+      <view class='clear-cart' bindtap="clearCart">
+        <label class='iconfont icon-trash'></label>
+        <text>清空购物车</text>
+      </view>
+    </view>
+    <scroll-view scroll-y="true">
+      <view class="cart-item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+        <view class="name">{{goods[id].goods_name}}</view>
+        <view class="price">{{goods[id].integral}}积分+￥{{goods[id].shop_price}}</view>
+        <view class='rna'>
+          <view class="minusCart" bindtap="tapReduceCart" data-id="{{id}}">
+            <label class='iconfont icon-minus'></label>
+          </view>
+          <view class="num">{{num}}</view>
+          <view class="addCart" bindtap="tapAddCart" data-id="{{id}}">
+            <label class='iconfont icon-plus'></label>
+          </view>
+        </view>
+      </view>
+      <view class='rear'>-睿途便利-</view>
+    </scroll-view>
+  </view>
+  <!-- 扫码便利架 -->
+  <view wx:if="{{!isScaned}}" class='scan-shelf' bindtap="scanCode">
+    <icon class='iconfont icon-scan'></icon>
+    <text>扫便利架码</text>
+  </view>
+  <!-- 用户中心 -->
+  <view class="page-mask {{userCenterOpen ? '' : 'page-mask-hide'}}" bindtap="openCenter" catchtouchmove="preventScroll"></view>
+  <view class="user-center {{userCenterOpen ? 'user-center-show' : ''}}" catchtouchmove="preventScroll">
+    <view class='dog-tag' hidden='{{!userCenterOpen}}'>
+      <image class='avatar' src='{{userInfo.avatarUrl}}' background-size='cover'></image>
+      <view class='user-info'>
+        <text class='name'>{{userInfo.nickName}}</text>
+        <text class='phone'>111111</text>
+      </view>
+    </view>
+    <view class='list-wrapper'>
+      <navigator class='my-points' url='/pages/points/points'>
+        <text class='text'>我的积分</text>
+        <text class='points'>333</text>
+        <label class='iconfont icon-arrow-right'></label>
+      </navigator>
+      <navigator class='my-bills' url='/pages/myOrder/myOrder'>
+        <text class='text'>我的订单</text>
+        <label class='iconfont icon-arrow-right'></label>
+      </navigator>
+      <view class='phone-bind'>
+        <text class='text'>手机绑定</text>
+        <text class='phoneNum'>1111111111</text>
+        <label class='iconfont icon-arrow-right'></label>
+      </view>
+      <navigator class='opinion' url='/pages/opinion/opinion'>
+        <text class='text'>意见反馈</text>
+        <label class='iconfont icon-arrow-right'></label>
+      </navigator>
+      <view class='version'>
+        <text class='text'>版本信息</text>
+        <text class='text'>1.01</text>
+      </view>
+    </view>
+  </view>
+</view>

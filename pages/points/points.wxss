@@ -1,0 +1,46 @@
+/* pages/points/points.wxss */
+
+.points-wrap {
+  width: 100%;
+  height: 280rpx;
+  background: linear-gradient(to right, #ab7df8, #8146e5);
+  text-align: center;
+  padding-top: 90rpx;
+}
+
+.count, .text {
+  color: #fff;
+}
+
+.count {
+  font-size: 84rpx;
+  line-height: 84rpx;
+}
+
+.text {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  margin-top: 34rpx;
+}
+
+.text-wrap {
+  width: 100%;
+  padding: 40rpx;
+}
+
+.rule-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+  border-left: 4rpx solid #8146e5;
+  padding-left: 30rpx;
+  line-height: 28rpx;
+}
+
+.rule-content {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 48rpx;
+  height: 750rpx;
+}

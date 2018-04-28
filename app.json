@@ -1,0 +1,18 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/confirmOrder/confirmOrder",
+    "pages/bindPhone/bindPhone",
+    "pages/points/points",
+    "pages/opinion/opinion",
+    "pages/orderInfo/orderInfo",
+    "pages/myOrder/myOrder"
+  ],
+  "window":{
+    "backgroundColor":"#f0f1f5",
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "睿途便利货架",
+    "navigationBarTextStyle": "black"
+  }
+}

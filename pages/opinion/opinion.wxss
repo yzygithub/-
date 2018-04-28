@@ -1,0 +1,24 @@
+page {
+  background: #f0f1f5;
+}
+
+.opinion-input {
+  width: 100%;
+  height: 400rpx;
+  padding: 30rpx;
+  background: #fff;
+  box-sizing: border-box;
+  border-top: 1px solid #e8e8e8;
+  margin-bottom: 40rpx;
+}
+
+.submit {
+  background: #8146e5;
+  color: #fff;
+  margin: 0 30rpx;
+}
+
+.button-hover {
+  color: #8146e5;
+  background: #fff;
+}
