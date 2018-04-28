@@ -2,25 +2,25 @@
 <view class='container'>
   <view class='order-item'>
     <view class='order-head'>
-      <text class='numb'>已选商品({{count}})</text>
+      <text class='numb'>已选商品({{cart.count}})</text>
     </view>
     <!-- 订单列表 -->
     <scroll-view class="goods-wrapper" scroll-y="true">
       <view class='goods-list'>
-        <view class='goods-item' wx:for="{{goodsList}}" wx:key="index">
-          <image class="pic" src="{{item.pic}}"></image>
-          <view class="name ellipsis">{{item.goods_name}}</view>
+        <view class='goods-item'  wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+          <image class="pic" src="{{goods[id].pic}}"></image>
+          <view class="name ellipsis">{{goods[id].goods_name}}</view>
           <view class="price">
-            {{item.integral}}积分+￥{{item.shop_price}}
+            {{goods[id].integral}}积分+￥{{goods[id].shop_price}}
           </view>
-          <text class='count'>X{{item.goods_num}}</text>
+          <text class='count'>X{{num}}</text>
         </view>
       </view>
     </scroll-view>
   </view>
   <view class='order-foot'>
     <text class='total'>合计：
-      <text class='total-price'>￥{{totalPrice}}+{{totalIntegral}}积分</text>
+      <text class='total-price'>￥{{cart.totalPrice}}+{{cart.totalIntegral}}积分</text>
     </text>
     <view class='pay' bindtap='payNow'>立即支付</view>
   </view>

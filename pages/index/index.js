@@ -62,6 +62,7 @@ Page({
                   that.setData({
                     goods: res.data.result
                   })
+                  app.globalData.goods = res.data.result
                 }
               }
             })
@@ -296,70 +297,13 @@ Page({
     })
   },
   preventScroll: function () {
-  //  捕捉滚动，阻止滚动穿透
+  //  捕捉滚动事件，防止滚动穿透
   },
   submitCart: function () {
     console.log('submit cart')
-    // console.log(this.data.cart.list)
-    const url = app.globalData.baseUrl + '/index.php/api/cart/addCart'
-    const token = app.globalData.token
-    for (let id in this.data.cart.list) {
-      // console.log(id+':'+this.data.cart.list[id])
-      const num = this.data.cart.list[id]
-      wx.request({
-        url:url,
-        data:{
-          token:token,
-          goods_id:id,
-          goods_num:num,
-          is_auto_sale:1
-        },
-        success:res=>{
-          if(res.data.status != 1) {
-            console.log(id+':'+num+'加入购物车失败')
-            wx.showToast({
-              title: '有商品加入购物车失败',
-              icon:'none',
-              duration:2000
-            })
-          }
-          if(res.data.status == 1) {
-            console.log(id+':'+num+'加入购物车成功')
-          }
-        }
-      })
-    }
-    let self = this
-    //获取cartId=>提交订单
-    const cartUrl = app.globalData.baseUrl + '/index.php/api/cart/getXcartList'
-    wx.request({
-      url: cartUrl,
-      data:{token:app.globalData.token},
-      success:res=>{
-        // console.log(res)
-        for (let value of res.data.result) {
-          self.data.cartId.push(value.cart_id)
-        }
-        const orderUrl = app.globalData.baseUrl + '/index.php/api/cart/postXOrder'
-        wx.request({
-          url:orderUrl,
-          data: {
-            cart_id: this.data.cartId.join(),
-            token: app.globalData.token
-          },
-          success:res=>{
-            console.log(res)
-            app.globalData.order_id = res.data.result.order_id
-            //清空本地购物车，跳转
-            this.clearCart()
-            wx.navigateTo({
-              url: '../confirmOrder/confirmOrder'
-            })
-          }
-        })
-      }
+
+    wx.navigateTo({
+      url: '../confirmOrder/confirmOrder'
     })
-
-
   }
 })
