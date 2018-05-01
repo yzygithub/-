@@ -1,6 +1,9 @@
 page {
   background: #f0f1f5;
 }
+.scroll-wrap {
+  height: 100%;
+}
 .item-list {
   background: #fff;
   margin-bottom: 20rpx;

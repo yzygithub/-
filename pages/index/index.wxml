@@ -93,13 +93,13 @@
       <image class='avatar' src='{{userInfo.avatarUrl}}' background-size='cover'></image>
       <view class='user-info'>
         <text class='name'>{{userInfo.nickName}}</text>
-        <text class='phone'>111111</text>
+        <text class='phone'>{{phoneNum}}</text>
       </view>
     </view>
     <view class='list-wrapper'>
       <navigator class='my-points' url='/pages/points/points'>
         <text class='text'>我的积分</text>
-        <text class='points'>333</text>
+        <text class='points'>{{myIntegral}}</text>
         <label class='iconfont icon-arrow-right'></label>
       </navigator>
       <navigator class='my-bills' url='/pages/myOrder/myOrder'>
@@ -108,7 +108,7 @@
       </navigator>
       <view class='phone-bind'>
         <text class='text'>手机绑定</text>
-        <text class='phoneNum'>1111111111</text>
+        <text class='phoneNum'>{{phoneNum}}</text>
         <label class='iconfont icon-arrow-right'></label>
       </view>
       <navigator class='opinion' url='/pages/opinion/opinion'>
@@ -117,7 +117,7 @@
       </navigator>
       <view class='version'>
         <text class='text'>版本信息</text>
-        <text class='text'>1.01</text>
+        <text class='text'>0.1.0</text>
       </view>
     </view>
   </view>

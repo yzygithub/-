@@ -10,6 +10,8 @@ Page({
     showCartDetail: false,//购物车列表 默认false
     userCenterOpen: false,//用户中心打开 默认false
     userInfo: {},
+    phoneNum:'',
+    myIntegral:0,
     hasUserInfo: false,
     classifySeleted: '',
     // canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -48,8 +50,14 @@ Page({
               // console.log(res)
               app.globalData.token = res.data.result.token
               app.globalData.mobile = res.data.result.mobile
-              app.globalData.pay_points = res.data.result.pay_points
+              app.globalData.myIntegral = res.data.result.pay_points
+              app.globalData.phoneNum = res.data.result.mobile
               // console.log(app.globalData)
+              const phoneNumMix = app.globalData.phoneNum.substr(0, 3) + '****' + app.globalData.phoneNum.substr(7);
+              that.setData({
+                myIntegral:app.globalData.myIntegral,
+                phoneNum:phoneNumMix
+              })
             }
             //获得商品信息
             wx.request({

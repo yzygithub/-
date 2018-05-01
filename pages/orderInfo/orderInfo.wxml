@@ -1,43 +1,37 @@
 <view class='container'>
-  <view class="item-list">
-    <view class="list-head">商品清单</view>
-    <view class='list-item'>
-      <text class='item-name'>乐事薯片经典原味 145gx1</text>
-      <text class='price'>800积分</text>
+  <scroll-view scroll-y="true" class="scroll-wrap">
+    <view class="item-list">
+      <view class="list-head">商品清单</view>
+      <view class='list-item' wx:for="{{orderInfo.goods_data}}" wx:key="id">
+        <text class='item-name'>{{item.goods_name}}x{{item.goods_num}}</text>
+        <text class='price'>{{item.integral}}积分+￥{{item.goods_price}}</text>
+      </view>
     </view>
-    <view class='list-item'>
-      <text class='item-name'>乐事薯片经典原味 145gx1</text>
-      <text class='price'>800积分</text>
+    <view class="item-list">
+      <view class="list-head">结算</view>
+      <view class='list-item'>
+        <text>积分使用:</text>
+        <text class='total-points'>{{orderInfo.integral}}积分</text>
+      </view>
+      <view class='list-item'>
+        <text>实付金额:</text>
+        <text class='pay-money'>￥{{orderInfo.order_amount}}</text>
+      </view>
     </view>
-    <view class='list-item'>
-      <text class='item-name'>乐事薯片经典原味 145gx1</text>
-      <text class='price'>800积分</text>
+    <view class="item-list">
+      <view class="list-head">订单信息</view>
+      <view class='list-item'>
+        <text>订单状态:</text>
+        <text class='statues'>{{orderInfo.pay_status_text}}</text>
+      </view>
+      <view class='list-item'>
+        <text>订单编号:</text>
+        <text class='order-num'>{{orderInfo.order_sn}}</text>
+      </view>
+      <view class='list-item'>
+        <text>下单时间:</text>
+        <text class='order-time'>{{orderInfo.create_time}}</text>
+      </view>
     </view>
-  </view>
-  <view class="item-list">
-    <view class="list-head">结算</view>
-    <view class='list-item'>
-      <text>积分使用:</text>
-      <text class='total-points'>1000积分</text>
-    </view>
-    <view class='list-item'>
-      <text>实付金额:</text>
-      <text class='pay-money'>￥90</text>
-    </view>
-  </view>
-  <view class="item-list">
-    <view class="list-head">订单信息</view>
-    <view class='list-item'>
-      <text>订单状态:</text>
-      <text class='statues'>已完成</text>
-    </view>
-    <view class='list-item'>
-      <text>订单编号:</text>
-      <text class='order-num'>111111</text>
-    </view>
-    <view class='list-item'>
-      <text>下单时间:</text>
-      <text class='order-time'>2017-08-16 14:00:02</text>
-    </view>
-  </view>
+  </scroll-view>
 </view>

@@ -1,31 +1,24 @@
 <view class='container'>
   <scroll-view scroll-y class='order-scroll'>
-    <view class='order-item'>
+    <view class='order-item'  wx:for="{{orderList}}" wx:key="id" wx:for-item="order">
       <view class='order-head'>
-        <text class='numb'>订单编号：{{}}</text>
-        <text class='ok'>已完成</text>
+        <text class='numb'>订单编号：{{order.order_sn}}</text>
+        <text class='ok'>{{order.pay_status_text}}</text>
       </view>
       <view class='goods-list'>
-        <view class='goods-item'>
-          <image class="pic" src="http://img1.gtimg.com/health/pics/hv1/138/79/2068/134491983.jpg"></image>
-          <view class="name ellipsis">CORORO紫葡萄味150g</view>
+        <view class='goods-item' wx:for="{{order.goods_data}}" wx:key="id" wx:for-item="goods">
+          <image class="pic" src="{{goods.pic}}"></image>
+          <view class="name ellipsis">{{goods.goods_name}}</view>
           <view class="price">
-            800积分+￥200
+            {{goods.integral}}积分+￥{{goods.goods_price}}
           </view>
-          <text class='count'>X1</text>
-        </view>
-        <view class='goods-item'>
-          <image class="pic" src="http://img1.gtimg.com/health/pics/hv1/138/79/2068/134491983.jpg"></image>
-          <view class="name ellipsis">CORORO紫葡萄味150g</view>
-          <view class="price">
-            800积分+￥200
-          </view>
-          <text class='count'>X1</text>
+          <text class='count'>X{{goods.goods_num}}</text>
         </view>
       </view>
       <view class='order-foot'>
-        <text class='total'>合计：<text class='total-price'>￥82.8+3000积分</text></text>
-        <view class='order-detail' bindtap='toOrderDetail'>查看详情</view>
+        <text class='total'>合计：<text class='total-price'>￥{{order.order_amount}}+{{order.integral}}积分</text></text>
+        <!--<view class='order-detail' bindtap='toOrderDetail'>查看详情</view>-->
+        <navigator class='order-detail' url="/pages/orderInfo/orderInfo?id={{order.order_id}}">查看详情</navigator>
       </view>
     </view>
   </scroll-view>

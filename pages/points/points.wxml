@@ -1,6 +1,6 @@
 <view class='container'>
   <view class='points-wrap'>
-    <view class='count'>222222</view>
+    <view class='count'>{{myIntegral}}</view>
     <view class='text'>积分余额</view>
   </view>
   <view class='text-wrap'>

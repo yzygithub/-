@@ -1,12 +1,12 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/orderInfo/orderInfo",
+    "pages/myOrder/myOrder",
     "pages/confirmOrder/confirmOrder",
     "pages/bindPhone/bindPhone",
     "pages/points/points",
-    "pages/opinion/opinion",
-    "pages/orderInfo/orderInfo",
-    "pages/myOrder/myOrder"
+    "pages/opinion/opinion"
   ],
   "window":{
     "backgroundColor":"#f0f1f5",

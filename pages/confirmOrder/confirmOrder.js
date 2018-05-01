@@ -29,10 +29,11 @@ Page({
           // console.log(goodsId+':'+self.data.cart.list[goodsId])
           let goodsItem = {}
           goodsItem.goods_id = goodsId;
-          goodsItem.goods_num = self.data.cart.list[goodsId]
+          goodsItem.goods_num = self.data.cart.list[goodsId].toString()
           self.data.goods_info.push(goodsItem)
         }
         console.log(JSON.stringify(self.data.goods_info))
+        console.log(self.data.goods_info)
       }
     } catch (e) {
       // Do something when catch error
