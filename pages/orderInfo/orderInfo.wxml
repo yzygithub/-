@@ -4,7 +4,12 @@
       <view class="list-head">商品清单</view>
       <view class='list-item' wx:for="{{orderInfo.goods_data}}" wx:key="id">
         <text class='item-name'>{{item.goods_name}}x{{item.goods_num}}</text>
-        <text class='price'>{{item.integral}}积分+￥{{item.goods_price}}</text>
+        <text class='price'>
+        <!-- {{item.integral}}积分+￥{{item.goods_price}} -->
+          <text wx:if="{{item.integral}}">{{item.integral}}积分</text>
+          <text wx:if="{{item.integral&&item.goods_price!='0.00'}}">+</text>
+          <text wx:if="{{item.goods_price!='0.00'}}">￥{{item.goods_price}}</text>
+        </text>
       </view>
     </view>
     <view class="item-list">

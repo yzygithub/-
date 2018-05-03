@@ -195,7 +195,7 @@ Page({
   },
   countCart: function (index, lists) {
     var count = 0,
-      totalPrice = 0,
+      totalPrice = 0.00,
       totalIntegral = 0;
     var goods;
     for (var id in this.data.cart.list) {
@@ -205,7 +205,7 @@ Page({
       totalIntegral += goods.integral * this.data.cart.list[id];
     }
     this.data.cart.count = count;
-    this.data.cart.totalPrice = totalPrice;
+    this.data.cart.totalPrice = totalPrice.toFixed(2);
     this.data.cart.totalIntegral = totalIntegral;
     this.setData({
       cart: this.data.cart
@@ -224,7 +224,7 @@ Page({
   clearCart: function() {
     this.data.cart.list = {}
     this.data.cart.count = 0;
-    this.data.cart.totalPrice = 0;
+    this.data.cart.totalPrice = 0.00;
     this.data.cart.totalIntegral = 0;
     this.setData({
       cart: this.data.cart,

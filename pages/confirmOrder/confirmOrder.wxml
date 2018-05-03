@@ -11,7 +11,9 @@
           <image class="pic" src="{{goods[id].pic}}"></image>
           <view class="name ellipsis">{{goods[id].goods_name}}</view>
           <view class="price">
-            {{goods[id].integral}}积分+￥{{goods[id].shop_price}}
+            <text wx:if="{{goods[id].integral}}">{{goods[id].integral}}积分</text>
+            <text wx:if="{{goods[id].integral&&goods[id].shop_price!='0.00'}}">+</text>
+            <text wx:if="{{goods[id].shop_price!='0.00'}}">￥{{goods[id].shop_price}}</text>
           </view>
           <text class='count'>X{{num}}</text>
         </view>
@@ -20,7 +22,11 @@
   </view>
   <view class='order-foot'>
     <text class='total'>合计：
-      <text class='total-price'>￥{{cart.totalPrice}}+{{cart.totalIntegral}}积分</text>
+      <text class='total-price'>
+        <text hidden="{{cart.totalPrice==0.00}}">￥{{cart.totalPrice}}</text>
+        <text hidden="{{cart.totalPrice==0.00||!cart.totalIntegral}}">+</text>
+        <text hidden="{{!cart.totalIntegral}}">{{cart.totalIntegral}}积分</text>
+      </text>
     </text>
     <view class='pay' bindtap='payNow'>立即支付</view>
   </view>

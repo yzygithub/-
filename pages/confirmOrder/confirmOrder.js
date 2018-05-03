@@ -52,7 +52,7 @@ Page({
     // this.setData({
     //   loading:true
     // })
-    // let self =this
+    let self =this
     //提交订单
     const url = app.globalData.baseUrl + '/index.php/api/cart/postXOrder'
     wx.request({
@@ -107,9 +107,20 @@ Page({
                     console.log(res)
                     if (res.errMsg == 'requestPayment:fail cancel') {
                       //取消支付，取消订单
-                      wx.showToast({
-                        title: '取消支付',
-                        icon:'none'
+                      wx.request({
+                        url: app.globalData.baseUrl + '/index.php/api/order/delXOrder',
+                        data:{
+                          order_id: orderId,
+                          token: app.globalData.token
+                        },
+                        success:function(res) {
+                          if (res.data.status==1) {
+                            wx.showToast({
+                              title: '取消订单',
+                              icon: 'none'
+                            })
+                          }
+                        }
                       })
                     }
                   },
