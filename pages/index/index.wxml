@@ -8,8 +8,7 @@
   <view class='content-wrapper'>
     <!-- 商品分类 -->
     <scroll-view class="classify-wrapper" scroll-y="true">
-      <view class="classify {{classifySeleted == ('c-'+classify.id)?'active':''}}" wx:for="{{goodsList}}"
-            wx:for-item="classify" wx:key="id" data-id="c-{{classify.id}}" bindtap="tapClassify">
+      <view class="classify {{classifySeleted == ('c-'+classify.id)?'active':''}}" wx:for="{{goodsList}}" wx:for-item="classify" wx:key="id" data-id="c-{{classify.id}}" bindtap="tapClassify">
         <view class="name">{{classify.classifyName}}</view>
       </view>
     </scroll-view>
@@ -21,19 +20,20 @@
           <image class="pic" src="{{goods[id].pic}}"></image>
           <view class="name ellipsis">{{goods[id].goods_name}}</view>
           <view class="price">
-            <text class='big'>{{goods[id].integral}}</text>
-            积分+￥
-            <text class='big'>{{goods[id].shop_price}}</text>
+            <text wx:if="{{goods[id].integral}}"><text class='big'>{{goods[id].integral}}</text>积分</text>
+            <text wx:if="{{goods[id].integral&&goods[id].shop_price}}" class="and">+</text>
+            <text wx:if="{{goods[id].shop_price}}">￥<text class='big'>{{goods[id].shop_price}}</text></text>
           </view>
-          <view class='rna'>
-            <!-- <view class="minusCart" bindtap="tapReduceCart" data-id="{{id}}">
+          <view class='snh' hidden="{{!cart.list[id]}}">
+            <view class="minusCart" bindtap="tapReduceCart" data-id="{{id}}">
               <label class='iconfont icon-minus'></label>
             </view>
-            <view class="num">{{num}}</view> -->
+            <!--这里如果同一件商品出现在不同的层，就会有bug，因为数量是根据商品id取得的。-->
+            <view class="num">{{cart.list[id]}}</view>
+          </view>
             <view class="addCart" bindtap="tapAddCart" data-id="{{id}}">
               <label class='iconfont icon-plus'></label>
             </view>
-          </view>
         </view>
       </view>
       <view class='rear'>-睿途便利-</view>
@@ -49,10 +49,7 @@
       </view>
       <view class="total">￥{{cart.totalPrice}}+{{cart.totalIntegral}}积分</view>
     </view>
-    <!--<form bindsubmit="submit" report-submit="true">-->
-      <!--<view formType="submit" class="submit">去结算</view>-->
     <button class="ok" bindtap="submitCart">选好了</button>
-    <!--</form>-->
   </view>
   <!-- 购物车列表 -->
   <view class="mask" bindtap="hideMask" hidden='{{!showCartDetail}}' catchtouchmove="preventScroll"></view>

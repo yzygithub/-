@@ -7,62 +7,47 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    textVal:'',
+    storeId:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({
+      storeId: app.globalData.store_id
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
+  textInput:function (e) {
+    this.setData({
+      textVal: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
+  submit:function () {
+    wx.request({
+      url:app.globalData.baseUrl+'/index.php/api/user/postSuggestion',
+      data:{
+        store_id: this.data.storeId,
+        content:this.data.textVal,
+        token:app.globalData.token
+      },
+      success:res=>{
+        console.log(res)
+        if (res.data.status==1) {
+          wx.showToast({
+            title: '已经成功提交',
+            icon:'success',
+            success:()=> {
+              setTimeout(function () {
+                wx.redirectTo({
+                  url: '../index/index'
+                })
+              },2000)
+            }
+          })
+        }
+      }
+    })
   }
 })

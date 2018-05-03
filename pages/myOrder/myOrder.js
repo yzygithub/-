@@ -19,6 +19,7 @@ Page({
     wx.request({
       url:url,
       data:{
+        pagesize:50,
         token:app.globalData.token
       },
       success:res=>{

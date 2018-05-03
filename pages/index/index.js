@@ -4,8 +4,8 @@ const app = getApp()
 
 Page({
   data: {
-    shelfLocation: '苏州睿途网络科技有限公司货架A',
-    isScaned: true,//是否扫描便利架码 false:未扫码，显示提示。
+    shelfLocation: '',
+    isScaned: false,//是否扫描便利架码 false:未扫码，显示提示。
     // cartShow: false,//底部购物车是否显示 默认false
     showCartDetail: false,//购物车列表 默认false
     userCenterOpen: false,//用户中心打开 默认false
@@ -23,63 +23,104 @@ Page({
       totalIntegral: 0,
       list: {}
     },
-    cartId:[]
+    // cartId:[]
   },
-  onLoad: function () {
+  onLoad: function (options) {
     // console.log(app.globalData.baseUrl)
     console.log(app.globalData)
+    console.log(options)
+    if (options.store_id) {
+      app.globalData.store_id = options.store_id
+      this.setData({
+        store_id: options.store_id,
+        isScaned:true
+      })
+    }
+    
     // 登录
     let that = this
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        const jscode = res.code
-        let url = app.globalData.baseUrl + '/index.php/api/user/smallLogin';
-        wx.request({
-          url: url,
-          data: {jscode: jscode},
-          success: function (res) {
-            console.log(res.data)
-            if (res.data.status == 4004) {
-              // console.log(res.data.status)
-              wx.redirectTo({
-                url: '../bindPhone/bindPhone',
-              })
-            } else if (res.data.status == 1) {
-              // console.log('smallLogin:')
-              // console.log(res)
-              app.globalData.token = res.data.result.token
-              app.globalData.mobile = res.data.result.mobile
-              app.globalData.myIntegral = res.data.result.pay_points
-              app.globalData.phoneNum = res.data.result.mobile
-              // console.log(app.globalData)
-              const phoneNumMix = app.globalData.phoneNum.substr(0, 3) + '****' + app.globalData.phoneNum.substr(7);
-              that.setData({
-                myIntegral:app.globalData.myIntegral,
-                phoneNum:phoneNumMix
-              })
-            }
-            //获得商品信息
-            wx.request({
-              url: app.globalData.baseUrl + '/index.php/api/Index/getIndexGoods',
-              data: {token: app.globalData.token},
-              success: res => {
-                if (res.data.status == 1) {
-                  // console.log('set goods')
-                  // console.log(res.data.result)
-                  that.setData({
-                    goods: res.data.result
-                  })
-                  app.globalData.goods = res.data.result
-                }
-              }
+    if (this.data.store_id) {
+      // 取得货架信息
+      wx.request({
+        url: app.globalData.baseUrl + '/index.php/api/store/getXStoreInfo',
+        data:{
+          // token: app.globalData.token,
+          store_id: this.data.store_id
+        },
+        success:function(res) {
+          console.log(res)
+          if (res.data.status == 1) {
+            that.setData({
+              shelfLocation: res.data.result.store_name
             })
           }
-        })
-        // console.log('login:')
-        // console.log(res)
-      }
-    })
+        }
+      })
+      //获得分类信息
+      wx.request({
+        url: app.globalData.baseUrl + '/index.php/api/Index/getIndexPage',
+        // data: {token:app.globalData.token},
+        success: res => {
+          this.setData({
+            goodsList: res.data.result,
+            classifySeleted: 'c-' + res.data.result[0].id
+          })
+        }
+      })
+      // 登录，获得商品信息
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          const jscode = res.code
+          let url = app.globalData.baseUrl + '/index.php/api/user/smallLogin';
+          wx.request({
+            url: url,
+            data: { jscode: jscode },
+            success: function (res) {
+              // console.log(res.data)
+              if (res.data.status == 4004) {
+                // console.log(res.data.status)
+                wx.redirectTo({
+                  url: '../bindPhone/bindPhone',
+                })
+              } else if (res.data.status == 1) {
+                // console.log('smallLogin:')
+                // console.log(res)
+                app.globalData.token = res.data.result.token
+                app.globalData.mobile = res.data.result.mobile
+                app.globalData.myIntegral = res.data.result.pay_points
+                app.globalData.phoneNum = res.data.result.mobile
+                // console.log(app.globalData)
+                const phoneNumMix = app.globalData.phoneNum.substr(0, 3) + '****' + app.globalData.phoneNum.substr(7);
+                that.setData({
+                  myIntegral: app.globalData.myIntegral,
+                  phoneNum: phoneNumMix
+                })
+              }
+              //获得商品信息
+              wx.request({
+                url: app.globalData.baseUrl + '/index.php/api/Index/getIndexGoods',
+                // url: 'https://www.easy-mock.com/mock/5ae8446861d6467bd702a072/jifen/getIndexGoods',
+                data: { token: app.globalData.token },
+                success: res => {
+                  if (res.data.status == 1) {
+                    // console.log('set goods')
+                    // console.log(res.data.result)
+                    that.setData({
+                      goods: res.data.result
+                    })
+                    app.globalData.goods = res.data.result
+                  }
+                }
+              })
+            }
+          })
+          // console.log('login:')
+          // console.log(res)
+        }
+      })
+    } 
+    
 
     if (app.globalData.userInfo) {
       this.setData({
@@ -108,17 +149,6 @@ Page({
         }
       })
     }
-    //获得分类信息
-    wx.request({
-      url: app.globalData.baseUrl + '/index.php/api/Index/getIndexPage',
-      // data: {token:app.globalData.token},
-      success: res => {
-        this.setData({
-          goodsList: res.data.result,
-          classifySeleted: 'c-' + res.data.result[0].id
-        })
-      }
-    })
   },
 
   tapAddCart: function (e) {
@@ -131,16 +161,21 @@ Page({
   },
   addCart: function (id) {
     // console.log(id)
-    var num = this.data.cart.list[id] || 0;
-    this.data.cart.list[id] = num + 1;
-    this.countCart();
-    var price = this.data.goods[id].shop_price;
-    var name = this.data.goods[id].goods_name;
-    var img = this.data.goods[id].pic;
-    var sortedList = [];
-    var index;
-    var num = this.data.cart.list[id] || 0;
-    num = num + 1;
+    //判断是否有足够积分
+    const myIntegral = app.globalData.myIntegral
+    const totalIntegral = this.data.cart.totalIntegral
+    const diff = myIntegral - (totalIntegral + this.data.goods[id].integral)
+    console.log('diff:'+diff)
+    if (diff>=0) {
+      var num = this.data.cart.list[id] || 0;
+      this.data.cart.list[id] = num + 1;
+      this.countCart();
+    } else {
+      wx.showToast({
+        title: '您没有足够积分',
+        icon:'none'
+      })
+    }
   },
   reduceCart: function (id) {
     var num = this.data.cart.list[id] || 0;
@@ -297,9 +332,9 @@ Page({
     wx.scanCode({
       success: (res) => {
         console.log(res)
-        wx.showToast({
-          title: res,
-          icon: 'none'
+        console.log(res.path)
+        wx.redirectTo({
+          url: res.path
         })
       }
     })
@@ -309,7 +344,6 @@ Page({
   },
   submitCart: function () {
     console.log('submit cart')
-
     wx.navigateTo({
       url: '../confirmOrder/confirmOrder'
     })

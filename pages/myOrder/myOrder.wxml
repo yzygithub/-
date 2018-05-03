@@ -17,7 +17,6 @@
       </view>
       <view class='order-foot'>
         <text class='total'>合计：<text class='total-price'>￥{{order.order_amount}}+{{order.integral}}积分</text></text>
-        <!--<view class='order-detail' bindtap='toOrderDetail'>查看详情</view>-->
         <navigator class='order-detail' url="/pages/orderInfo/orderInfo?id={{order.order_id}}">查看详情</navigator>
       </view>
     </view>

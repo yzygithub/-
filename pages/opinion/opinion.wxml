@@ -1,5 +1,5 @@
 <view class='container'>
-<textarea class='opinion-input' placeholder='请输入您的建议和意见，以帮助我们更好的改进产品。' placeholder-style='color:#ccc;font-size:24rpx;' maxlength='300'>
+<textarea class='opinion-input' placeholder='请输入您的建议和意见，以帮助我们更好的改进产品。' placeholder-style='color:#ccc;font-size:24rpx;' maxlength='300' bindinput="textInput">
 </textarea>
-<button class='submit'>提交</button>
+<button class='submit' bindtap="submit">提交</button>
 </view>
