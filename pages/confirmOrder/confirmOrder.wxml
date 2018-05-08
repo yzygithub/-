@@ -11,8 +11,8 @@
           <image class="pic" src="{{goods[id].pic}}"></image>
           <view class="name ellipsis">{{goods[id].goods_name}}</view>
           <view class="price">
-            <text wx:if="{{goods[id].integral}}">{{goods[id].integral}}积分</text>
-            <text wx:if="{{goods[id].integral&&goods[id].shop_price!='0.00'}}">+</text>
+            <text wx:if="{{goods[id].integral!='0.00'}}">{{goods[id].integral}}积分</text>
+            <text wx:if="{{goods[id].integral!='0.00'&&goods[id].shop_price!='0.00'}}">+</text>
             <text wx:if="{{goods[id].shop_price!='0.00'}}">￥{{goods[id].shop_price}}</text>
           </view>
           <text class='count'>X{{num}}</text>

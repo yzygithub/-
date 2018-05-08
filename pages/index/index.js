@@ -28,12 +28,17 @@ Page({
   onLoad: function (options) {
     // console.log(app.globalData.baseUrl)
     console.log(app.globalData)
-    console.log(options)
+    // console.log(options)
     if (options.store_id) {
       app.globalData.store_id = options.store_id
       this.setData({
         store_id: options.store_id,
         isScaned:true
+      })
+    } else if (app.globalData.store_id) {
+      this.setData({
+        store_id: app.globalData.store_id,
+        isScaned: true
       })
     }
     
@@ -77,15 +82,16 @@ Page({
             url: url,
             data: { jscode: jscode },
             success: function (res) {
-              // console.log(res.data)
+              console.log('logInfo:')
+              console.log(res.data)
               if (res.data.status == 4004) {
                 // console.log(res.data.status)
                 wx.redirectTo({
                   url: '../bindPhone/bindPhone',
                 })
               } else if (res.data.status == 1) {
-                // console.log('smallLogin:')
-                // console.log(res)
+                console.log('smallLogin:')
+                console.log(res)
                 app.globalData.token = res.data.result.token
                 app.globalData.mobile = res.data.result.mobile
                 app.globalData.myIntegral = res.data.result.pay_points
@@ -166,7 +172,8 @@ Page({
     const totalIntegral = this.data.cart.totalIntegral
     const diff = myIntegral - (totalIntegral + this.data.goods[id].integral)
     console.log('diff:'+diff)
-    if (diff>=0) {
+    // if (diff >= 0) {
+    if (true) {
       var num = this.data.cart.list[id] || 0;
       this.data.cart.list[id] = num + 1;
       this.countCart();
@@ -334,7 +341,13 @@ Page({
         console.log(res)
         console.log(res.path)
         wx.redirectTo({
-          url: res.path
+          url: res.path,
+          fail:function() {
+            wx.showToast({
+              title: '扫码失败',
+              icon:'none'
+            })
+          }
         })
       }
     })

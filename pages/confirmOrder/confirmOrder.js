@@ -135,7 +135,7 @@ Page({
         } else if (res.data.status==4004) {
           //积分不够
           wx.showToast({
-            title: res.data.result,
+            title: res.data.msg,
             icon:'none'
           })
         }

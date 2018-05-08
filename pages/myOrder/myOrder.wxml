@@ -10,8 +10,8 @@
           <image class="pic" src="{{goods.pic}}"></image>
           <view class="name ellipsis">{{goods.goods_name}}</view>
           <view class="price">
-            <text wx:if="{{goods.integral}}">{{goods.integral}}积分</text>
-            <text wx:if="{{goods.integral&&goods.goods_price!='0.00'}}">+</text>
+            <text wx:if="{{goods.integral!='0.00'}}">{{goods.integral}}积分</text>
+            <text wx:if="{{goods.integral!='0.00'&&goods.goods_price!='0.00'}}">+</text>
             <text wx:if="{{goods.goods_price!='0.00'}}">￥{{goods.goods_price}}</text>
           </view>
           <text class='count'>X{{goods.goods_num}}</text>
@@ -20,8 +20,8 @@
       <view class='order-foot'>
         <text class='total'>合计：<text class='total-price'>
           <text wx:if="{{order.order_amount!='0.00'}}">￥{{order.order_amount}}</text>
-          <text wx:if="{{order.integral&&order.order_amount!='0.00'}}">+</text>
-          <text wx:if="{{order.integral}}">{{order.integral}}积分</text>
+          <text wx:if="{{order.integral!='0.00'&&order.order_amount!='0.00'}}">+</text>
+          <text wx:if="{{order.integral!='0.00'}}">{{order.integral}}积分</text>
         </text></text>
         <navigator class='order-detail' url="/pages/orderInfo/orderInfo?id={{order.order_id}}">查看详情</navigator>
       </view>
