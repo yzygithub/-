@@ -125,8 +125,8 @@
 }
 
 .addCart, .minusCart {
-  width: 42rpx;
-  height: 42rpx;
+  width: 48rpx;
+  height: 48rpx;
   /*border: 20rpx solid transparent;*/
   /*padding: 20rpx;*/
   /*background-clip: content-box;*/
@@ -148,28 +148,30 @@
 }
 .goods .minusCart {
   position: absolute;
-  right: 120rpx;
+  right: 130rpx;
   bottom: 46rpx;
 }
 .goods .num {
   position: absolute;
   right: 90rpx;
   bottom: 46rpx;
+  font-size: 32rpx;
+  color: #999;
 }
 .icon-minus {
   color: #ccc;
-  font-size: 20rpx;
+  font-size: 28rpx;
   position: absolute;
-  top: 10rpx;
-  left: 12rpx;
+  top: 8rpx;
+  left: 10rpx;
 }
 
 .icon-plus {
   color: #fff;
   position: absolute;
   top: 8rpx;
-  left: 9rpx;
-  font-size: 26rpx;
+  left: 10rpx;
+  font-size: 30rpx;
 }
 
 .rear {
@@ -272,10 +274,14 @@
 .cart .data .total {
   color: #333;
   font-size: 42rpx;
+  font-weight: bold;
   line-height: 98rpx;
   padding-left: 140rpx;
 }
-
+.total .small {
+  font-size: 28rpx;
+  font-weight: normal;
+}
 .cart .ok {
   margin-top: 12rpx;
   margin-right: 30rpx;

@@ -20,8 +20,8 @@
           <image class="pic" src="{{goods[id].pic}}"></image>
           <view class="name ellipsis">{{goods[id].goods_name}}</view>
           <view class="price">
-            <text wx:if="{{goods[id].integral}}"><text class='big'>{{goods[id].integral}}</text>积分</text>
-            <text wx:if="{{goods[id].integral&&goods[id].shop_price!='0.00'}}" class="and">+</text>
+            <text wx:if="{{goods[id].integral!='0.00'}}"><text class='big'>{{goods[id].integral}}</text>积分</text>
+            <text wx:if="{{goods[id].integral!='0.00'&&goods[id].shop_price!='0.00'}}" class="and">+</text>
             <text wx:if="{{goods[id].shop_price!='0.00'}}">￥<text class='big'>{{goods[id].shop_price}}</text></text>
           </view>
           <view class='snh' hidden="{{!cart.list[id]}}">
@@ -48,9 +48,9 @@
         <view class="count">{{cart.count}}</view>
       </view>
       <view class="total">
-        <text hidden="{{cart.totalPrice==0.00}}">￥{{cart.totalPrice}}</text>
+        <text hidden="{{cart.totalPrice==0.00}}"><text class='small'>￥</text>{{cart.totalPrice}}</text>
         <text hidden="{{cart.totalPrice==0.00||!cart.totalIntegral}}">+</text>
-        <text hidden="{{!cart.totalIntegral}}">{{cart.totalIntegral}}积分</text>
+        <text hidden="{{!cart.totalIntegral}}">{{cart.totalIntegral}}<text class='small'>积分</text></text>
       </view>
     </view>
     <button class="ok" bindtap="submitCart">选好了</button>
@@ -69,8 +69,8 @@
       <view class="cart-item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
         <view class="name">{{goods[id].goods_name}}</view>
         <view class="price">
-          <text wx:if="{{goods[id].integral}}">{{goods[id].integral}}积分</text>
-          <text wx:if="{{goods[id].integral&&goods[id].shop_price!='0.00'}}">+</text>
+          <text wx:if="{{goods[id].integral!='0.00'}}">{{goods[id].integral}}积分</text>
+          <text wx:if="{{goods[id].integral!='0.00'&&goods[id].shop_price!='0.00'}}">+</text>
           <text wx:if="{{goods[id].shop_price!='0.00'}}">￥{{goods[id].shop_price}}</text>
         </view>
         <view class='rna'>

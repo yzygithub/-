@@ -73,7 +73,8 @@ Page({
               token:app.globalData.token
             },
             success:res=>{
-              console.log(res)
+              console.log(res)              
+              if (!res.data.status) {
               const timeStamp = res.data.timeStamp
               const nonceStr = res.data.nonceStr
               const wxPackage = res.data.package
@@ -130,6 +131,21 @@ Page({
                     // })
                   }
                 })
+              } else if (res.data.status == 1) {
+              // 没有现金、只有积分的返回
+                wx.showToast({
+                  title: '支付成功',
+                  icon: 'success',
+                  duration: 1000,
+                  success: function (res) {
+                    setTimeout(function () {
+                      wx.redirectTo({
+                        url: '../index/index'
+                      })
+                    }, 1000)
+                  }
+                })
+              }
             }
           })
         } else if (res.data.status==4004) {

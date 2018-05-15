@@ -76,6 +76,7 @@ Page({
       wx.login({
         success: res => {
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          // console.log(res.code)
           const jscode = res.code
           let url = app.globalData.baseUrl + '/index.php/api/user/smallLogin';
           wx.request({
