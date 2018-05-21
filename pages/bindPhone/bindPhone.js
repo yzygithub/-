@@ -10,8 +10,12 @@ Page({
   data: {
     mobile: '',
     smsCode: '',
+    getCodeMsg:'获取验证码',
+    getCodeClass:'get-code',
+    border:'none',
     isMobileVali: false,
-    isCodeVali: false
+    isCodeVali: false,
+    disabled:false
   },
 
   /**
@@ -69,8 +73,40 @@ Page({
                 icon: 'success',
                 duration: 2000
               })
+              //  这里要加个倒计时功能
+              var timer = 1
+              if (timer == 1) {
+                timer = 0
+                var time = 60
+                self.setData({
+                  getCodeClass: "cant-get",
+                  disabled:true,
+                  border:'1px solid #666'
+                })
+                var inter = setInterval(function () {
+                  self.setData({
+                    getCodeMsg: time + "s",
+                  })
+                  time--
+                  if (time < 0) {
+                    timer = 1
+                    clearInterval(inter)
+                    self.setData({
+                      getCodeClass: "get-code",
+                      getCodeMsg: "获取验证码",
+                      disabled: false,
+                      border: 'none'
+                    })
+                  }
+                }, 1000)
+              }
+            } else {
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+                duration: 2000
+              })
             }
-            //  这里要加个倒计时功能
           }
         })
       } else {

@@ -49,7 +49,6 @@ Page({
       wx.request({
         url: app.globalData.baseUrl + '/index.php/api/store/getXStoreInfo',
         data:{
-          // token: app.globalData.token,
           store_id: this.data.store_id
         },
         success:function(res) {

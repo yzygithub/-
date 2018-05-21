@@ -47,7 +47,19 @@ label {
   right: 20rpx;
   top: 20rpx;
 }
-
+.cant-get {
+  width: 200rpx;
+  height: 60rpx;
+  display: inline-block;
+  line-height: 60rpx;
+  background: #aeaeae;
+  color: #fbfbfb;
+  font-size: 26rpx;
+  border-radius: 30rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
 .submit {
   margin: 0 30rpx;
   background: #8146E5;
